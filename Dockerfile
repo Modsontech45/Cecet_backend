@@ -7,7 +7,8 @@ RUN apk add --no-cache \
     zip unzip git curl icu-dev
 
 # PHP extensions
-RUN docker-php-ext-install pdo pdo_pgsql intl
+RUN apk add --no-cache libzip-dev \
+ && docker-php-ext-install pdo pdo_pgsql intl zip
 
 # Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
