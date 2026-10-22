@@ -97,6 +97,8 @@ return [
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'prefer'),
+            // PgBouncer (Neon pooler) transaction mode does not support server-side prepared statements.
+            'options' => [PDO::ATTR_EMULATE_PREPARES => true],
         ],
 
         'sqlsrv' => [
